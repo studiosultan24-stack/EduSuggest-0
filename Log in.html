@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>EduSuggest - تسجيل الدخول</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #0066cc;
+      --background-color: #f4f6f9;
+      --text-color: #333;
+      --card-bg: #ffffff;
+      --border-color: #ddd;
+      --error-color: #ff4444;
+    }
+
+    .dark-mode {
+      --primary-color: #4dabf7;
+      --background-color: #121212;
+      --text-color: #f1f1f1;
+      --card-bg: #1e1e1e;
+      --border-color: #444;
+      --error-color: #ff7675;
+    }
+
+    body { 
+      font-family: Arial, sans-serif; 
+      background: var(--background-color); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+      color: var(--text-color);
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+    }
+    
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .theme-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .card { 
+      background: var(--card-bg); 
+      padding: 30px; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+      width: 350px; 
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    
+    h2 {
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+    
+    input { 
+      width: 90%; 
+      padding: 12px; 
+      margin: 12px 0; 
+      border: 1px solid var(--border-color); 
+      border-radius: 5px; 
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      transition: border-color 0.3s;
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    button { 
+      padding: 12px 24px; 
+      background: var(--primary-color); 
+      color: white; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+      width: 100%;
+    }
+    
+    button:hover { 
+      background: #004d99; 
+    }
+    
+    p {
+      margin-top: 20px;
+      color: var(--text-color);
+    }
+    
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #004d99;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo i {
+      margin-left: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      color: var(--text-color);
+      font-size: 14px;
+    }
+
+    .developer-link {
+      color: var(--primary-color);
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .developer-link:hover {
+      text-decoration: underline;
+      color: #004d99;
+    }
+
+    .dark-mode a {
+      color: #4dabf7;
+    }
+
+    .dark-mode .developer-link:hover {
+      color: #8ab4f8;
+    }
+
+    .message {
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      display: none;
+    }
+
+    .error {
+      background-color: #ffebee;
+      color: var(--error-color);
+      border: 1px solid #ffcdd2;
+    }
+
+    .success {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+    }
+
+    .dark-mode .error {
+      background-color: #3c1c1f;
+      color: #ff7675;
+      border: 1px solid #5c2c2f;
+    }
+
+    .dark-mode .success {
+      background-color: #1c3c1f;
+      color: #75ff7a;
+      border: 1px solid #2c5c2f;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div class="container">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      <span>EduSuggest</span>
+    </div>
+    
+    <div class="card">
+      <h2>تسجيل الدخول</h2>
+      
+      <div id="error-message" class="message error"></div>
+      <div id="success-message" class="message success"></div>
+      
+      <input type="text" id="username" placeholder="اسم المستخدم">
+      <input type="password" id="password" placeholder="كلمة المرور">
+      <button onclick="login()">تسجيل الدخول</button>
+      <p>ليس لديك حساب؟ <a href="Sign in.html">إنشاء حساب</a></p>
+    </div>
+    
+    <footer>
+      <a href="https://www.facebook.com/Senko6666/" target="_blank" class="developer-link">
+        <i class="fab fa-facebook"></i> 🚀 تم تطويره بواسطة Hamza
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    // Theme Toggle Functionality
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+      
+      const themeIcon = document.getElementById('theme-toggle').querySelector('i');
+      if (isDarkMode) {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      }
+    }
+
+    // Initialize Theme
+    function initTheme() {
+      const savedTheme = localStorage.getItem('darkMode') === 'true';
+      if (savedTheme) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-toggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
+      }
+    }
+
+    function showMessage(element, message) {
+      element.textContent = message;
+      element.style.display = 'block';
+      setTimeout(() => {
+        element.style.display = 'none';
+      }, 5000);
+    }
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMessage = document.getElementById("error-message");
+      const successMessage = document.getElementById("success-message");
+      const user = JSON.parse(localStorage.getItem("user"));
+      
+      // Hide previous messages
+      errorMessage.style.display = 'none';
+      successMessage.style.display = 'none';
+      
+      if(username === "" || password === "") {
+        showMessage(errorMessage, "الرجاء ملء جميع الحقول!");
+        return;
+      }
+
+      if(user && user.username === username && user.password === password) {
+        showMessage(successMessage, "تم تسجيل الدخول بنجاح!");
+        localStorage.setItem("loggedIn", "true");
+        
+        // Redirect to main page after delay
+        setTimeout(() => {
+          window.location.href = "index 1.html";
+        }, 1500);
+      } else {
+        showMessage(errorMessage, "اسم المستخدم أو كلمة المرور غير صحيحة!");
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+      
+      // Check if user is already logged in
+      if(localStorage.getItem("loggedIn") === "true") {
+        window.location.href = "index 1.html";
+      }
+      
+      // Handle Enter key press
+      document.getElementById("password").addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          login();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
